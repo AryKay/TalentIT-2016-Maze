@@ -197,15 +197,17 @@ var evaluateMove = function(move, position) {
 
 var constructWhile = function(position) {
     var pos = position;
+    var whileHardLimit = 0;
     whileLoop = [];
     while (moves[pos] !== "(end while)") {
         whileLoop.push(moves[pos]);
         pos += 1;
     };
-    while (whileConditionHolds(whileCondition)) {
+    while (whileConditionHolds(whileCondition) && whileHardLimit < 20) {
         for (var i = 0; i < whileLoop.length; i++) {
             evaluateMove(whileLoop[i], i);
         }
+        whileHardLimit += 1;
     };
 }
 
