@@ -120,6 +120,23 @@ var loopConstructor = function(direction) {
     whileConstruct = "";
 }
 
+var undoMove = function() {
+    if (moves.length === 0) {
+        document.getElementById("feedback").innerText = "You don't have any moves to undo!";
+        return;
+    } else if (moves[moves.length-1].includes("while") && !moves[moves.length-1].includes("end")) {
+        toggleLoop();
+    } else if (movesLeft < totalMoves) {
+        moves.pop();
+        movesLeft += 1;
+    }
+
+    document.getElementById("feedback").innerText = "";
+    document.getElementById("movesLeft").innerText = movesLeft;
+    document.getElementById("movesList").innerHTML = "";
+    document.getElementById("movesList").appendChild(makeUL(moves));
+}
+
 var submitSolution = function() {
     for (var i = 0; i < moves.length; i++) {
         if (isWhile && moves[i] !== "(end while)") {
