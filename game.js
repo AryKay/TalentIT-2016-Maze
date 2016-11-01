@@ -2,7 +2,7 @@
 // Puzzle made by @Antonio and coded by @Arian 1.11.2016
 
 // GENERAL CONSTANTS
-var totalMoves = 12;
+var totalMoves = 11;
 var playerLocation = [0, 0];
 var finishPoint = [7, 3];
 var mazeWidth = 12;
@@ -92,7 +92,7 @@ var toggleLoop = function() {
     isLoop = !isLoop;
     if (isLoop) {
         whileConstruct = "while ( ";
-        document.getElementById("whileDetails").innerText = "While: *CHOOSE CONDITION*";
+        document.getElementById("whileDetails").innerText = "while: *CHOOSE CONDITION*";
         document.getElementById("whileToggle").innerText = "End 'While' loop";
     } else {
         if (whileConstruct.length === 0) {
