@@ -40,7 +40,8 @@ var resetGame = function() {
     moves = [];
     document.getElementById("feedback").innerText = "";
     document.getElementById("movesLeft").innerText = movesLeft;
-    document.getElementById("movesList").innerText = "None";
+    document.getElementById("movesList").innerText = "";
+    document.getElementById("movesList").appendChild(makeUL(["None"]));
     document.getElementById("whileDetails").innerText = "";
     document.getElementById("whileToggle").innerText = "Start 'While' loop";
     document.getElementById("winner").innerText = "";
@@ -146,7 +147,7 @@ var submitSolution = function() {
         document.getElementById("feedback").innerText = "You have an open 'While' loop! Please close it before submission.";  
         return;
     }
-    
+
     for (var i = 0; i < moves.length; i++) {
         if (isWhile && moves[i] !== "(end while)") {
             continue;
