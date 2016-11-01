@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <title>Smarp Challenge TalentIT</title>
+    <!-- Well aren't you being a #Smarpass, looking at the source code and all...
+		 Get out of here and try to solve the challenge! Come meet us when you're done! -->
+    <style>
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 3px;
+        margin-bottom: 3px;
+        text-align: center;
+    }
+
+    .info {
+        margin: auto;
+        width: 75%;
+    }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="game.js"></script>
+</head>
+
+<body>
+    <div class="container main">
+    <div class="container main">
+        <div class="header center">
+            <img src="smarp-logo-black.png" style="width: 35%" />
+            <h1>TalentIT 2016 Challenge</h1>
+        </div>
+        <br>
+        <div class="info">
+            <p>Welcome to Smarp's mini challenge! Try solving it and receive a reward from us at the TalentIT 2016 fair.</p>
+            <p>Below is an image of a maze. You need to get from the START point to the END point in only 12 moves. Below you have two sets of tools:</p>
+                <ul>
+                    <li><b>Single-move:</b> You can move one step at a time using this tool. Keep track of your moves though, as each step counts as one move!</li>
+                    <li><b>While-loop Constructor:</b> You can create while loops depending on a single condition and travel longer distances while saving moves!</li>
+                </ul>
+        </div>
+        <br>
+        <img src="maze.png" style="width: 80%;" class="img-responsive center">
+        <div class="info center">
+            <div style="font-weight: bold;">Moves left: <span id="movesLeft">12</span>
+            </div>
+            <div id="feedback" style="color: red; text-align: center;"></div>
+            <div id="winner" style="color: green; text-align: center; font-size: 18px; font-weight: bold;"></div>
+            <br>
+            <button class="btn btn-primary" onclick="submitSolution()">Submit</button>
+            <button class="btn btn-secondary" onclick="resetGame()">Reset</button>
+            <br>
+            <br>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+                <div id="single" class="center" style="width:320px;border-width:1px;border-style: solid;padding: 10px;"> <b>Single-move</b>
+                    <br> <span>Click on a button to go one step to that direction. Each step counts as ONE move.</span>
+                    <br>
+                    <br>
+                    <button onclick="move('up')">Up</button>
+                    <br>
+                    <button onclick="move('left')">Left</button>
+                    <button onclick="move('right')">Right</button>
+                    <br>
+                    <button onclick="move('down')">Down</button>
+                </div>
+                <br>
+                <div id="while" class="center" style="width:320px;border-width:1px;border-style: solid;padding: 10px;"> <b>While-loop Constructor</b>
+                    <br> <span>First click on 'While', then pick a condition from this box and afterwards pick your desired moves in order from the 'Single-move' commands. Finish the loop by clicking on 'While' again. The loop itself counts as ONE move as well.</span>
+                    <br>
+                    <br>
+                    <button id="whileToggle" onclick="toggleLoop()">Start 'While' loop</button>
+                    <br>
+                    <br>
+                    <button onclick="loopConstructor('up')">Can go up</button>
+                    <br>
+                    <button onclick="loopConstructor('left')">Can go left</button>
+                    <button onclick="loopConstructor('right')">Can go right</button>
+                    <br>
+                    <button onclick="loopConstructor('down')">Can go down</button>
+                    <br>
+                    <br> <span id="whileDetails" style="font-weight: bold;"></span>
+                </div>
+            </div>
+            <div class="col-md-6">Your moves:
+                <div id="movesList">
+                <ul>
+                    <li>None</li>
+                </ul></div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="footer center">
+        <span style="font-size: 13px">Made in <a href="http://www.smarp.com" target="_blank">Smarp</a> with JavaScript & Love</span>
+    </div>
+</body>
