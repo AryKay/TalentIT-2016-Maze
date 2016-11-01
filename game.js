@@ -134,7 +134,11 @@ var undoMove = function() {
     document.getElementById("feedback").innerText = "";
     document.getElementById("movesLeft").innerText = movesLeft;
     document.getElementById("movesList").innerHTML = "";
-    document.getElementById("movesList").appendChild(makeUL(moves));
+    if(moves.length > 0) {
+        document.getElementById("movesList").appendChild(makeUL(moves));
+    } else {
+        document.getElementById("movesList").appendChild(makeUL(["None"]));
+    }
 }
 
 var submitSolution = function() {
