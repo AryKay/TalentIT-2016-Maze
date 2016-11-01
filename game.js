@@ -27,6 +27,7 @@ var isLoop = false;
 var whileConstruct = "";
 var keepGoing = true;
 var isWhile = false;
+var isWinner = false;
 var whileCondition;
 
 var resetGame = function() {
@@ -36,6 +37,7 @@ var resetGame = function() {
     whileConstruct = "";
     keepGoing = true;
     isWhile = false;
+    isWinner = false;
     whileCondition = "";
     moves = [];
     document.getElementById("feedback").innerText = "";
@@ -125,7 +127,7 @@ var undoMove = function() {
     if (moves.length === 0) {
         document.getElementById("feedback").innerText = "You don't have any moves to undo!";
         return;
-    } else if (moves[moves.length-1].includes("while") && !moves[moves.length-1].includes("end")) {
+    } else if (moves[moves.length - 1].includes("while") && !moves[moves.length - 1].includes("end")) {
         toggleLoop();
     } else if (movesLeft < totalMoves) {
         moves.pop();
@@ -135,7 +137,7 @@ var undoMove = function() {
     document.getElementById("feedback").innerText = "";
     document.getElementById("movesLeft").innerText = movesLeft;
     document.getElementById("movesList").innerHTML = "";
-    if(moves.length > 0) {
+    if (moves.length > 0) {
         document.getElementById("movesList").appendChild(makeUL(moves));
     } else {
         document.getElementById("movesList").appendChild(makeUL(["None"]));
@@ -143,8 +145,15 @@ var undoMove = function() {
 }
 
 var submitSolution = function() {
+
+    document.getElementById("feedback").innerText = "";
+
     if (isLoop) {
-        document.getElementById("feedback").innerText = "You have an open 'While' loop! Please close it before submission.";  
+        document.getElementById("feedback").innerText = "You have an open 'While' loop! Please close it before submission.";
+        return;
+    }
+
+    if (isWinner) {
         return;
     }
 
@@ -161,6 +170,7 @@ var submitSolution = function() {
     }
 
     if (playerLocation[0] === finishPoint[0] && playerLocation[1] === finishPoint[1]) {
+        isWinner = true;
         document.getElementById("winner").innerText = "Congratulations! You have solved the puzzle! Come visit us and show your solution (the move list printed below) to get your reward!"
     } else {
         document.getElementById("feedback").innerText = "Unfortunately your solution is not correct, as you didn't end up in the END block. Click `Reset` below to try again!";
@@ -273,9 +283,9 @@ var whileConditionHolds = function(condition) {
 }
 
 // polyfill for string.includes()
- if (!String.prototype.includes) {
-     String.prototype.includes = function() {
-         'use strict';
-         return String.prototype.indexOf.apply(this, arguments) !== -1;
-     };
- }
+if (!String.prototype.includes) {
+    String.prototype.includes = function() {
+        'use strict';
+        return String.prototype.indexOf.apply(this, arguments) !== -1;
+    };
+}
