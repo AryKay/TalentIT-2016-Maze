@@ -142,12 +142,18 @@ var undoMove = function() {
 }
 
 var submitSolution = function() {
+    if (isLoop) {
+        document.getElementById("feedback").innerText = "You have an open 'While' loop! Please close it before submission.";  
+        return;
+    }
+    
     for (var i = 0; i < moves.length; i++) {
         if (isWhile && moves[i] !== "(end while)") {
             continue;
         }
 
         evaluateMove(moves[i], i);
+
         if (!keepGoing) {
             break;
         }
