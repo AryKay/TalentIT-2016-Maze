@@ -2,7 +2,7 @@
 // Puzzle made by @Antonio and coded by @Arian 1.11.2016
 
 // GENERAL CONSTANTS
-var totalMoves = 12;
+var totalMoves = 20;
 var playerLocation = [0, 0];
 var finishPoint = [7, 3];
 var mazeWidth = 12;
